@@ -1,0 +1,41 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "flutter-mvvm-gamer-e27d0",
+          "appId": "1:468631315837:android:95771b61b98310538c9814",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "flutter-mvvm-gamer-e27d0",
+          "appId": "1:468631315837:ios:980918d25b03b66e8c9814",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "macos": {
+        "default": {
+          "projectId": "flutter-mvvm-gamer-e27d0",
+          "appId": "1:468631315837:ios:980918d25b03b66e8c9814",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "flutter-mvvm-gamer-e27d0",
+          "configurations": {
+            "android": "1:468631315837:android:95771b61b98310538c9814",
+            "ios": "1:468631315837:ios:980918d25b03b66e8c9814",
+            "macos": "1:468631315837:ios:980918d25b03b66e8c9814",
+            "web": "1:468631315837:web:34e89e06c874b9e58c9814",
+            "windows": "1:468631315837:web:e8c5cb537881f6268c9814"
+          }
+        }
+      }
+    }
+  }
+}

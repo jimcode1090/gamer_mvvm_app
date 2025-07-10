@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "468631315837",
+    "project_id": "flutter-mvvm-gamer-e27d0",
+    "storage_bucket": "flutter-mvvm-gamer-e27d0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468631315837:android:95771b61b98310538c9814",
+        "android_client_info": {
+          "package_name": "com.example.gamer_mvvm_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqmU9lonYuc1IyU6eDiRjrJ7_SMS4N4Lo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
