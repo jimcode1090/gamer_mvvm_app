@@ -1,18 +1,19 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:gamer_mvvm_app/injection.dart';
+import 'package:gamer_mvvm_app/src/domain/use_cases/auth/auth_use_cases.dart';
 import 'package:gamer_mvvm_app/src/presentation/pages/auth/login/login_page.dart';
 import 'package:gamer_mvvm_app/src/presentation/pages/auth/login/login_viewmodel.dart';
 import 'package:gamer_mvvm_app/src/presentation/pages/auth/register/register_page.dart';
 import 'package:gamer_mvvm_app/src/presentation/pages/auth/register/register_viewmodel.dart';
+import 'package:gamer_mvvm_app/src/presentation/pages/home/home_page.dart';
+import 'package:gamer_mvvm_app/src/presentation/pages/home/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await configureDependencies();
   runApp(MyApp());
 }
 
@@ -23,8 +24,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => LoginViewModel()),
-        ChangeNotifierProvider(create: (context) => RegisterViewModel())
+        ChangeNotifierProvider(create: (context) => LoginViewModel(locator<AuthUseCases>())),
+        ChangeNotifierProvider(create: (context) => RegisterViewModel(locator<AuthUseCases>())),
+        ChangeNotifierProvider(create: (context) => HomeViewModel(locator<AuthUseCases>()))
       ],
       child: MaterialApp(
         title: 'Material App',
@@ -37,6 +39,7 @@ class MyApp extends StatelessWidget {
         routes: {
           'login' : (BuildContext context) => LoginPage(),
           'register': (BuildContext context) => RegisterPage(),
+          'home': (BuildContext context) => HomePage(),
         },
       ),
     );
