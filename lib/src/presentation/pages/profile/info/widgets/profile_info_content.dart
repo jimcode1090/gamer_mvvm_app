@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:gamer_mvvm_app/src/domain/models/user_model.dart';
+import 'package:gamer_mvvm_app/src/presentation/pages/profile/info/profile_info_viewmodel.dart';
 import 'package:gamer_mvvm_app/src/presentation/utils/assets.dart';
 import 'package:gamer_mvvm_app/src/presentation/widgets/default_button.dart';
 
-class ProfileContent extends StatelessWidget {
-  const ProfileContent({super.key});
+class ProfileInfoContent extends StatelessWidget {
+
+  final UserModel userData;
+  final ProfileInfoViewModel vm;
+
+  const ProfileInfoContent(this.vm,this.userData, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +52,7 @@ class ProfileContent extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: 40),
           child: Text(
-            'Jimmy Niels',
+            userData.username,
             style: TextStyle(
               color: Colors.white,
               fontSize: 22,
@@ -57,7 +63,7 @@ class ProfileContent extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: 5),
           child: Text(
-            'jimcode@gmail.com',
+            userData.email,
             style: TextStyle(
               color: Colors.white,
               fontSize: 15,
@@ -72,7 +78,9 @@ class ProfileContent extends StatelessWidget {
             icon: Icons.edit,
             color: Colors.white,
             text: 'Editar Datos',
-            onPress: () {},
+            onPress: () {
+              Navigator.pushNamed(context, 'profile/update');
+            },
           ),
         ),
 
@@ -81,7 +89,10 @@ class ProfileContent extends StatelessWidget {
           child: DefaultButton(
             icon: Icons.power_settings_new,
             text: 'Cerrar Sesión',
-            onPress: () {},
+            onPress: () async{
+              await vm.logout();
+              Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false);
+            },
           ),
         ),
       ],

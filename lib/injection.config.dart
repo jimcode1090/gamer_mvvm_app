@@ -15,8 +15,12 @@ import 'package:gamer_mvvm_app/src/di/app_module.dart' as _i449;
 import 'package:gamer_mvvm_app/src/di/firebase_service.dart' as _i859;
 import 'package:gamer_mvvm_app/src/domain/repository/auth_repository.dart'
     as _i240;
+import 'package:gamer_mvvm_app/src/domain/repository/user_repository.dart'
+    as _i416;
 import 'package:gamer_mvvm_app/src/domain/use_cases/auth/auth_use_cases.dart'
     as _i660;
+import 'package:gamer_mvvm_app/src/domain/use_cases/user/user_use_cases.dart'
+    as _i566;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -38,7 +42,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => appModule.usersCollection,
     );
     gh.factory<_i240.AuthRepository>(() => appModule.authRepository);
+    gh.factory<_i416.UserRepository>(() => appModule.userRepository);
     gh.factory<_i660.AuthUseCases>(() => appModule.authUseCases);
+    gh.factory<_i566.UserUseCases>(() => appModule.userUseCases);
     return this;
   }
 }

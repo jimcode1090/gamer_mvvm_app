@@ -18,10 +18,10 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    id: json["id"],
-    email: json["email"],
-    username: json["username"],
-    password: json["password"],
+    id: json["id"] ?? "",
+    email: json["email"] ?? "",
+    username: json["username"] ?? "",
+    password: json["password"] ?? "",
   );
 
   /// ✅ Nueva versión de toJson con opción para excluir password
