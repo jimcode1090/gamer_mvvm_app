@@ -10,9 +10,18 @@ class HomeViewModel extends ChangeNotifier {
 
   HomeViewModel(this._authUseCases);
 
+  int _currentIndex = 0;
+
+  int get currentIndex => _currentIndex;
+
 
   logout() async{
     await _authUseCases.logout.launch();
+  }
+
+  set currentIndex(int index){
+    _currentIndex = index;
+    notifyListeners();
   }
 
 }

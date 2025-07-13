@@ -9,8 +9,6 @@ import 'package:gamer_mvvm_app/src/presentation/pages/home/home_page.dart';
 import 'package:gamer_mvvm_app/src/presentation/pages/home/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 
-import 'firebase_options.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
