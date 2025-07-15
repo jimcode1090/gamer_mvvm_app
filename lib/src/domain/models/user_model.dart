@@ -8,6 +8,7 @@ class UserModel {
   String id;
   String email;
   String username;
+  String image;
   String password;
 
   UserModel({
@@ -15,13 +16,15 @@ class UserModel {
     this.email = "",
     this.username = "",
     this.password = "",
+    this.image = ""
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    id: json["id"] ?? "",
+  factory UserModel.fromJson(Map<String, dynamic> json, {String? id}) => UserModel(
+    id: id ??json["id"] ?? "",
     email: json["email"] ?? "",
     username: json["username"] ?? "",
     password: json["password"] ?? "",
+    image: json["image"] ?? "",
   );
 
   /// ✅ Nueva versión de toJson con opción para excluir password
@@ -29,6 +32,7 @@ class UserModel {
     final data = {
       "email": email,
       "username": username,
+      "image": image
     };
 
     if (includeId) {

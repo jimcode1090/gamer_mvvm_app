@@ -10,6 +10,7 @@ import 'package:gamer_mvvm_app/src/presentation/pages/home/home_page.dart';
 import 'package:gamer_mvvm_app/src/presentation/pages/home/home_viewmodel.dart';
 import 'package:gamer_mvvm_app/src/presentation/pages/profile/info/profile_info_viewmodel.dart';
 import 'package:gamer_mvvm_app/src/presentation/pages/profile/update/profile_update_page.dart';
+import 'package:gamer_mvvm_app/src/presentation/pages/profile/update/profile_update_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => LoginViewModel(locator<AuthUseCases>())),
         ChangeNotifierProvider(create: (context) => RegisterViewModel(locator<AuthUseCases>())),
         ChangeNotifierProvider(create: (context) => HomeViewModel(locator<AuthUseCases>())),
-        ChangeNotifierProvider(create: (context) => ProfileInfoViewModel(locator<UserUseCases>(), locator<AuthUseCases>()))
+        ChangeNotifierProvider(create: (context) => ProfileInfoViewModel(locator<UserUseCases>(), locator<AuthUseCases>())),
+        ChangeNotifierProvider(create: (context) => ProfileUpdateViewModel(locator<UserUseCases>()))
       ],
       child: MaterialApp(
         title: 'Material App',

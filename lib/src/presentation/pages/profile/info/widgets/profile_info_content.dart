@@ -79,7 +79,8 @@ class ProfileInfoContent extends StatelessWidget {
             color: Colors.white,
             text: 'Editar Datos',
             onPress: () {
-              Navigator.pushNamed(context, 'profile/update');
+              print('ProfileInfoContent -> ${userData.toJson()}');
+              Navigator.pushNamed(context, 'profile/update', arguments: userData);
             },
           ),
         ),

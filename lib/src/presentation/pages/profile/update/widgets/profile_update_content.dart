@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:gamer_mvvm_app/src/domain/models/user_model.dart';
+import 'package:gamer_mvvm_app/src/presentation/pages/profile/update/profile_update_viewmodel.dart';
 import 'package:gamer_mvvm_app/src/presentation/utils/assets.dart';
+import 'package:gamer_mvvm_app/src/presentation/utils/show_select_image_dialog.dart';
 import 'package:gamer_mvvm_app/src/presentation/widgets/default_button.dart';
 import 'package:gamer_mvvm_app/src/presentation/widgets/default_text_field.dart';
 
-class ProfileUpdateContent extends StatelessWidget {
-  const ProfileUpdateContent({super.key});
+class ProfileUpdateContent extends StatefulWidget {
+  ProfileUpdateViewModel vm;
+  UserModel userDataArg;
+
+  ProfileUpdateContent(this.vm, this.userDataArg, {super.key});
+
+  @override
+  State<ProfileUpdateContent> createState() => _ProfileUpdateContentState();
+}
+
+class _ProfileUpdateContentState extends State<ProfileUpdateContent> {
+  @override
+  void initState() {
+    widget.vm.loadData(widget.userDataArg);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +63,22 @@ class ProfileUpdateContent extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Image.asset(Assets.imgUserImage, height: 150, width: 150),
+                GestureDetector(
+                  onTap: () {
+                    showSelectImageDialog(
+                      context,
+                      widget.vm.pickImage,
+                      widget.vm.takePhoto,
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 60,
+                    backgroundImage:
+                        widget.vm.imageFile != null
+                            ? FileImage(widget.vm.imageFile!)
+                            : AssetImage(Assets.imgUserImage) as ImageProvider,
+                  ),
+                ),
               ],
             ),
           ],
@@ -54,10 +86,15 @@ class ProfileUpdateContent extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(left: 20, right: 20, top: 40),
           child: DefaultTextField(
+            initialValue: widget.userDataArg.username,
+            errorText: widget.vm.state.username.error,
+            obscureText: false,
             label: 'Nombre de usuario',
             icon: Icons.person_2_outlined,
             colorIcon: Colors.white,
-            onChanged: (value) {},
+            onChanged: (value) {
+              widget.vm.changeUserName(value);
+            },
           ),
         ),
         Spacer(),
@@ -66,7 +103,9 @@ class ProfileUpdateContent extends StatelessWidget {
           child: DefaultButton(
             icon: Icons.edit_attributes,
             text: 'Actualizar Información',
-            onPress: () async {},
+            onPress: () {
+              widget.vm.update();
+            },
           ),
         ),
       ],

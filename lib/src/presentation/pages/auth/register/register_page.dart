@@ -10,6 +10,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     RegisterViewModel vm = Provider.of<RegisterViewModel>(context);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {

@@ -11,6 +11,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
+import 'package:firebase_storage/firebase_storage.dart' as _i457;
 import 'package:gamer_mvvm_app/src/di/app_module.dart' as _i449;
 import 'package:gamer_mvvm_app/src/di/firebase_service.dart' as _i859;
 import 'package:gamer_mvvm_app/src/domain/repository/auth_repository.dart'
@@ -38,9 +39,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i59.FirebaseAuth>(() => appModule.firebaseAuth);
     gh.factory<_i974.FirebaseFirestore>(() => appModule.firebaseFirestore);
+    gh.factory<_i457.FirebaseStorage>(() => appModule.firebaseStorage);
     gh.factory<_i974.CollectionReference<Object?>>(
       () => appModule.usersCollection,
     );
+    gh.factory<_i457.Reference>(() => appModule.usersStorageRef);
     gh.factory<_i240.AuthRepository>(() => appModule.authRepository);
     gh.factory<_i416.UserRepository>(() => appModule.userRepository);
     gh.factory<_i660.AuthUseCases>(() => appModule.authUseCases);

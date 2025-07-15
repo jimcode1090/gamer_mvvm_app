@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class DefaultTextField extends StatelessWidget {
   String label;
   String errorText;
+  String initialValue;
   IconData icon;
   Color colorIcon;
   Function(String text) onChanged;
@@ -11,6 +12,7 @@ class DefaultTextField extends StatelessWidget {
   DefaultTextField({
     super.key,
     this.errorText = '',
+    this.initialValue = '',
     this.obscureText = false,
     required this.label,
     required this.icon,
@@ -20,7 +22,8 @@ class DefaultTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      initialValue: initialValue,
       onChanged: (value) {
         onChanged(value);
       },
