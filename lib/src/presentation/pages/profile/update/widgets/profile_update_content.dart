@@ -76,6 +76,8 @@ class _ProfileUpdateContentState extends State<ProfileUpdateContent> {
                     backgroundImage:
                         widget.vm.imageFile != null
                             ? FileImage(widget.vm.imageFile!)
+                            : widget.userDataArg.image.isNotEmpty
+                            ? NetworkImage(widget.userDataArg.image)
                             : AssetImage(Assets.imgUserImage) as ImageProvider,
                   ),
                 ),

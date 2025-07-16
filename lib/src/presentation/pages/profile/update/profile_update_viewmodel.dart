@@ -16,7 +16,9 @@ class ProfileUpdateViewModel extends ChangeNotifier {
 
   // Getters
   ProfileUpdateState get state => _state;
+
   Resource get response => _response;
+
   File? get imageFile => _imageFile;
 
   // UseCases
@@ -25,29 +27,29 @@ class ProfileUpdateViewModel extends ChangeNotifier {
   ProfileUpdateViewModel(this._userUseCases);
 
   update() async {
-
-    if(_state.isValid()){
-      _response = Loading();
+    _response = Loading();
+    
+    if (_state.isValid()) {
 
       if (_imageFile == null) {
         _response = await _userUseCases.updateWithoutImage.launch(
           _state.toUserModel(),
         );
-      }else {
-        _response = await _userUseCases.updateWithImage.launch(_state.toUserModel(), _imageFile!);
+      } else {
+        _response = await _userUseCases.updateWithImage.launch(
+          _state.toUserModel(),
+          _imageFile!,
+        );
       }
-
       notifyListeners();
     }
-
-
   }
 
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
-    if (image != null){
+    if (image != null) {
       _imageFile = File(image.path);
       notifyListeners();
     }
@@ -57,7 +59,7 @@ class ProfileUpdateViewModel extends ChangeNotifier {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.camera);
 
-    if (image != null){
+    if (image != null) {
       _imageFile = File(image.path);
       notifyListeners();
     }
@@ -77,9 +79,13 @@ class ProfileUpdateViewModel extends ChangeNotifier {
 
   void changeUserName(String value) {
     if (value.length >= 3) {
-      _state = _state.copyWith(username: ValidationItem(value: value, error: ''));
+      _state = _state.copyWith(
+        username: ValidationItem(value: value, error: ''),
+      );
     } else {
-      _state = _state.copyWith(username: ValidationItem(error: 'Al menos 3 caracteres'));
+      _state = _state.copyWith(
+        username: ValidationItem(error: 'Al menos 3 caracteres'),
+      );
     }
     notifyListeners();
   }

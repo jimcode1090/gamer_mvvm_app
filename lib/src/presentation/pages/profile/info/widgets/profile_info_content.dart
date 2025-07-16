@@ -6,11 +6,10 @@ import 'package:gamer_mvvm_app/src/presentation/utils/assets.dart';
 import 'package:gamer_mvvm_app/src/presentation/widgets/default_button.dart';
 
 class ProfileInfoContent extends StatelessWidget {
-
   final UserModel userData;
   final ProfileInfoViewModel vm;
 
-  const ProfileInfoContent(this.vm,this.userData, {super.key});
+  const ProfileInfoContent(this.vm, this.userData, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,14 @@ class ProfileInfoContent extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Image.asset(Assets.imgUserImage, height: 150, width: 150),
+                CircleAvatar(
+                  radius: 80,
+                  backgroundColor: Colors.white,
+                  backgroundImage:
+                      userData.image.isNotEmpty
+                          ? NetworkImage(userData.image)
+                          : AssetImage(Assets.imgBackground) as ImageProvider,
+                ),
               ],
             ),
           ],
@@ -80,7 +86,11 @@ class ProfileInfoContent extends StatelessWidget {
             text: 'Editar Datos',
             onPress: () {
               print('ProfileInfoContent -> ${userData.toJson()}');
-              Navigator.pushNamed(context, 'profile/update', arguments: userData);
+              Navigator.pushNamed(
+                context,
+                'profile/update',
+                arguments: userData,
+              );
             },
           ),
         ),
@@ -90,9 +100,13 @@ class ProfileInfoContent extends StatelessWidget {
           child: DefaultButton(
             icon: Icons.power_settings_new,
             text: 'Cerrar Sesión',
-            onPress: () async{
+            onPress: () async {
               await vm.logout();
-              Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                'login',
+                (route) => false,
+              );
             },
           ),
         ),

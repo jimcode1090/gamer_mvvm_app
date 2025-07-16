@@ -9,6 +9,11 @@ class PostMyListPage extends StatelessWidget {
       body: Center(
         child: Text('PostMyListPage'),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          
+        },
+      ),
     );
   }
 }
